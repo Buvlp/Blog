@@ -1,0 +1,34 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog App</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>My Blog</h1>
+  
+  <!-- Post Form -->
+  <form action="/add-post" method="POST">
+    <input type="text" name="title" placeholder="Post Title" required>
+    <textarea name="content" placeholder="Post Content" required></textarea>
+    <button type="submit">Add Post</button>
+  </form>
+  
+  <!-- Display Posts -->
+  <div class="posts">
+    <% posts.forEach(post => { %>
+      <div class="post">
+        <h2><%= post.title %></h2>
+        <p><%= post.content %></p>
+        <a href="/edit/<%= post.id %>">Edit</a>
+        <form action="/delete/<%= post.id %>" method="POST" style="display:inline;">
+          <button type="submit">Delete</button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
